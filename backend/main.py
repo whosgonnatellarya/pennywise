@@ -1,13 +1,28 @@
 from fastapi import FastAPI, Depends, HTTPException
+from fastapi.middleware.cors import CORSMiddleware
 from sqlalchemy.orm import Session
 from db import SessionLocal, engine, Base
 from models import User
 from pydantic import BaseModel
 
-# Create tables at startup (quick & safe for SQLite dev)
 Base.metadata.create_all(bind=engine)
 
 app = FastAPI(title="Pennywise API")
+
+# ---- CORS ----
+origins = [
+    "http://localhost:5173",
+    "http://127.0.0.1:5173",
+]
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=origins,      # or ["*"] for quick local dev
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+# ------------------------------------------------
 
 # Pydantic schemas
 class UserCreate(BaseModel):
