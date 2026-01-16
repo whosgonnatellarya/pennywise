@@ -1,0 +1,28 @@
+﻿# Python
+venv/
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.egg-info/
+
+# dotenv / secrets
+.env
+.env.*.local
+
+# SQLite dev DB
+*.db
+dev.db
+
+# node
+node_modules/
+npm-debug.log
+yarn-error.log
+
+# OS / editors
+.DS_Store
+.vscode/
+.idea/
+
+# logs
+*.log
