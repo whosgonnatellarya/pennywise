@@ -1,0 +1,26 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* small customizations */
+:root {
+  --card-bg: rgba(255,255,255,0.04);
+}
+
+/* page-level fallback */
+body {
+  @apply bg-gradient-to-b from-slate-900 to-slate-950 text-slate-100 antialiased;
+}
+
+/* small helper */
+.btn-brand {
+  @apply inline-flex items-center gap-2 px-4 py-2 rounded-full bg-brand-500 text-white hover:bg-brand-600;
+}
+
+/* user card subtle glass */
+.user-card {
+  background: var(--card-bg);
+  border-radius: 0.75rem;
+  border: 1px solid rgba(255,255,255,0.03);
+  padding: 1rem;
+}
