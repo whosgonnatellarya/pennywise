@@ -1,4 +1,4 @@
-import React from "react";
+﻿import React from "react";
 
 function stringToColor(str) {
   let hash = 0;
@@ -8,9 +8,7 @@ function stringToColor(str) {
 }
 
 export default function Avatar({ name, size = 48 }) {
-  const initials = name
-    ? name.split(" ").map(n => n[0]).slice(0,2).join("").toUpperCase()
-    : "?";
+  const initials = name ? name.split(" ").map(n => n[0]).slice(0,2).join("").toUpperCase() : "?";
   const bg = stringToColor(name || initials);
 
   return (

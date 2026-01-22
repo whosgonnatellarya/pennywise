@@ -1,26 +1,28 @@
-@tailwind base;
+﻿@tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-/* small customizations */
-:root {
-  --card-bg: rgba(255,255,255,0.04);
+/* Background + focus rings */
+@layer base {
+  html, body, #root { height: 100%; }
+  body {
+    @apply font-sans text-brand-800 antialiased;
+    background:
+      radial-gradient(1200px 600px at 30% -10%, #fff2e6 0%, #fff8f1 30%, #fff8f1 60%, #fef7e7 100%),
+      linear-gradient(180deg, #fff8f1 0%, #fef7e7 100%);
+  }
+  *:focus-visible {
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(255,255,255,0.9), 0 0 0 4px #f0c27b, 0 0 0 6px #b7791f44;
+    border-radius: 12px;
+  }
 }
 
-/* page-level fallback */
-body {
-  @apply bg-gradient-to-b from-slate-900 to-slate-950 text-slate-100 antialiased;
+/* Utility sugar */
+.input {
+  @apply px-3 py-2 rounded-xl bg-white/80 border border-brand-200/60 text-brand-800 placeholder-brand-700/50
+         focus:border-brand-400 focus:ring-2 focus:ring-brand-300/60 outline-none;
 }
-
-/* small helper */
-.btn-brand {
-  @apply inline-flex items-center gap-2 px-4 py-2 rounded-full bg-brand-500 text-white hover:bg-brand-600;
-}
-
-/* user card subtle glass */
-.user-card {
-  background: var(--card-bg);
-  border-radius: 0.75rem;
-  border: 1px solid rgba(255,255,255,0.03);
-  padding: 1rem;
+.card {
+  @apply rounded-xl border border-brand-200/30 bg-white/70 backdrop-blur-sm shadow-card;
 }
