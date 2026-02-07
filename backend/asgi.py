@@ -2,7 +2,6 @@
 from fastapi.staticfiles import StaticFiles
 from backend.main import app
 
-# CORS (safe for demo)
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["*"],
@@ -11,5 +10,5 @@ app.add_middleware(
     allow_credentials=False,
 )
 
-# Serve the built frontend from backend/public (we'll copy files there in Step 2)
+# Serve built frontend out of backend/public
 app.mount("/", StaticFiles(directory="backend/public", html=True), name="static")
