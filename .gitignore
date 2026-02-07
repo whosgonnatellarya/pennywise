@@ -1,24 +1,12 @@
-﻿# Python
-venv/
+﻿node_modules/
+dist/
+build/
+.vercel/
+.env*
+*.db
+*.sqlite
+backend/venv/
 __pycache__/
 *.pyc
-
-# dotenv / secrets
-.env
-.env.*.local
-
-# SQLite dev DB
-*.db
-dev.db
-
-# node
-node_modules/
-npm-debug.log
-
-# editors / OS
-.vscode/
-.idea/
-.DS_Store
-
-# logs
-*.log
+cloudflared.exe
+ngrok.exe
