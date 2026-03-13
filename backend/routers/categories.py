@@ -6,11 +6,11 @@ from .. import models, schemas
 
 router = APIRouter(prefix="/categories", tags=["categories"])
 
-@router.get("", response_model=List[schemas.CategoryOut])
+@router.get("/", response_model=List[schemas.CategoryOut])
 def list_categories(db: Session = Depends(get_db)):
     return db.query(models.Category).order_by(models.Category.order, models.Category.id).all()
 
-@router.post("", response_model=schemas.CategoryOut)
+@router.post("/", response_model=schemas.CategoryOut)
 def create_category(cat: schemas.CategoryCreate, db: Session = Depends(get_db)):
     c = models.Category(name=cat.name, budget=cat.budget, emoji=cat.emoji, color=cat.color)
     db.add(c); db.commit(); db.refresh(c)
@@ -28,6 +28,9 @@ def update_category(id: int, cat: schemas.CategoryUpdate, db: Session = Depends(
 def delete_category(id: int, db: Session = Depends(get_db)):
     c = db.get(models.Category, id)
     if not c: raise HTTPException(404, "Category not found")
+    has_transactions = db.query(models.Transaction.id).filter(models.Transaction.category_id == id).first() is not None
+    if has_transactions:
+        raise HTTPException(400, "Category has transactions")
     db.delete(c); db.commit()
     return
 

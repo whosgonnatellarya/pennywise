@@ -6,11 +6,11 @@ from .. import models, schemas
 
 router = APIRouter(prefix="/transactions", tags=["transactions"])
 
-@router.get("", response_model=List[schemas.TransactionOut])
+@router.get("/", response_model=List[schemas.TransactionOut])
 def list_transactions(db: Session = Depends(get_db)):
     return db.query(models.Transaction).order_by(models.Transaction.created_at.desc(), models.Transaction.id.desc()).all()
 
-@router.post("", response_model=schemas.TransactionOut)
+@router.post("/", response_model=schemas.TransactionOut)
 def create_transaction(tx: schemas.TransactionCreate, db: Session = Depends(get_db)):
     if not db.get(models.Category, tx.category_id):
         raise HTTPException(400, "Invalid category_id")

@@ -1,0 +1,7 @@
+services:
+  - type: web
+    name: pennywise
+    runtime: docker
+    dockerfilePath: ./Dockerfile
+    autoDeploy: true
+    healthCheckPath: /health
