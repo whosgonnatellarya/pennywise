@@ -4,8 +4,7 @@ This repo is set up to deploy as one Docker-based web service on Render.
 
 ## What it does
 
-- Builds the Vite frontend from `frontend/`
-- Copies the production assets into `backend/public/`
+- Uses the production frontend assets already in `backend/public/`
 - Runs FastAPI with `backend.asgi:app`
 - Serves the frontend and API from the same domain
 
@@ -21,3 +20,4 @@ This repo is set up to deploy as one Docker-based web service on Render.
 
 - The app currently uses SQLite, so data is ephemeral unless you attach a persistent disk or move to Postgres.
 - The frontend uses same-origin API calls by default, so no separate frontend host is required.
+- If you change frontend code, rebuild it locally and copy the generated `dist` files into `backend/public/` before deploying.
